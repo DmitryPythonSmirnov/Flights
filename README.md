@@ -16,6 +16,7 @@ pip install flask-paginate
 flask-paginate требует подключения Bootstrap, поэтому в стили подключена Bootstrap 5.2.2 через cdn.jsdelivr.net.
 
 ---
+
 **Запуск программы:**
 1. Необходимо развернуть СУБД PostreSQL (локально или удалённо) или воспользоваться уже установленным где-либо вариантом.
 2. Разворачивание учебной базы описано здесь: <https://postgrespro.ru/docs/postgrespro/9.6/demodb-bookings-installation.html>
@@ -34,3 +35,7 @@ port = '<db_port>'
 `pip install psycopg2-binary`.
 5. В консоли перейти в каталог проекта и запустить проект командой  
 `python main.py`
+
+---
+
+Проект можно посмотреть по следующему адресу: <http://159.253.21.167:5001>
