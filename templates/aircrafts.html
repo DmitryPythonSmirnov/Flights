@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Типы самолётов</title>{% endblock title %}
+
+{% block heading %}
+<p class="heading">
+    Типы самолётов
+</p>
+{% endblock %}
+
+
+{% block content %}
+<table class="table__center">
+    <thead>
+        <tr>
+            <th>Aircraft Code</th>
+            <th>Model Eng</th>
+            <th>Model Rus</th>
+            <th>Range</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for craft in aircrafts %}
+        <tr>
+            <td>{{ craft[0] }}</td>
+            <td>{{ craft[1]['en'] }}</td>
+            <td>{{ craft[1]['ru'] }}</td>
+            <td>{{ craft[2] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock content %}

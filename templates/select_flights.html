@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Выбор рейсов</title>{% endblock title %}
+
+{% block heading %}
+<p class="heading">
+    SQL SELECT
+    <br>
+    Введите до трёх номеров рейсов
+    <br>
+    Номер рейса - это число от 1 до {{ flights_count }}
+    <br>
+    Если будет введено число больше максимального, то оно автоматически приравняется к 0
+</p>
+<p>
+    При нажатии кнопки "Отправить запрос" выполнится следующий SELECT:
+</p>
+<pre>
+    SELECT
+        f.flight_id,
+        f.flight_no,
+        airport1.city::json ->> 'ru' as departure_city,
+        f.departure_airport,
+        f.scheduled_departure,
+        f.actual_departure,
+        airport2.city::json ->> 'ru' as arrival_city,
+        f.arrival_airport,
+        f.scheduled_arrival,
+        f.actual_arrival,
+        t.passenger_name,
+        t.contact_data::json ->> 'email' as email,
+        t.contact_data::json ->> 'phone' as phone
+    FROM bookings.tickets AS t
+    JOIN bookings.ticket_flights AS tf ON t.ticket_no = tf.ticket_no
+    JOIN bookings.flights AS f ON tf.flight_id = f.flight_id
+    JOIN bookings.airports_data AS airport1 ON f.departure_airport = airport1.airport_code
+    JOIN bookings.airports_data as airport2 on f.arrival_airport = airport2.airport_code
+    WHERE f.flight_id = ANY(%s)
+    ORDER BY f.flight_no, f.scheduled_departure, t.passenger_name
+</pre>
+<br>
+{% endblock %}
+
+
+{% block content %}
+<form action="{{ url_for('select_flights') }}" method="POST" class="select-flight-id">
+    <p>
+        <label for="flight_id_01">Введите flight_id #1:</label>
+        <input type="number" name="flight_id_01">
+    </p>
+    <p>
+        <label for="flight_id_02">Введите flight_id #2:</label>
+        <input type="number" name="flight_id_02">
+    </p>
+    <p>
+        <label for="flight_id_03">Введите flight_id #3:</label>
+        <input type="number" name="flight_id_03">
+    </p>
+
+    <button type="submit">Отправить запрос</button>
+</form>
+
+{% endblock content %}
+
+{% block sql_table %}
+
+{% if flights_selected %}
+
+<br>
+
+<table class="sqltable__center">
+    <thead>
+        <tr>
+            <th>Flight ID</th>
+            <th>Flight No</th>
+            <th>Departure City</th>
+            <th>Departure Airport</th>
+            <th>Scheduled Departure</th>
+            <th>Actual Departure</th>
+            <th>Arrival City</th>
+            <th>Arrival Airport</th>
+            <th>Scheduled Arrival</th>
+            <th>Actual Arrival</th>
+            <th>Passenger Name</th>
+            <th>Passenger Email</th>
+            <th>Passenger Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for flight in flights_selected %}
+        <tr>
+            <td class="font__size__10">{{ flight[0] }}</td>
+            <td class="font__size__10">{{ flight[1] }}</td>
+            <td class="font__size__10">{{ flight[2] }}</td>
+            <td class="font__size__10">{{ flight[3] }}</td>
+            <td class="font__size__10">{{ flight[4] }}</td>
+            <td class="font__size__10">{{ flight[5] }}</td>
+            <td class="font__size__10">{{ flight[6] }}</td>
+            <td class="font__size__10">{{ flight[7] }}</td>
+            <td class="font__size__10">{{ flight[8] }}</td>
+            <td class="font__size__10">{{ flight[9] }}</td>
+            <td class="font__size__10">{{ flight[10] }}</td>
+            <td class="font__size__10">{{ flight[11] }}</td>
+            <td class="font__size__10">{{ flight[12] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+
+{% endblock sql_table %}

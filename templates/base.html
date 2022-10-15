@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block title %}<title>Flights</title>{% endblock title %}
+</head>
+
+<body>
+    <div class="container">
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="{{ url_for('index') }}">Главная страница</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('airports') }}">Аэропорты</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('aircrafts') }}">Типы самолётов</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('flights') }}">Рейсы</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('select_flights') }}">Select flights</a>
+                </li>
+
+            </ul>
+        </div>
+
+        {% block heading %}{% endblock %}
+
+        {% block pagination_top %}{% endblock %}
+
+        {% block content %}{% endblock content %}
+
+
+
+    </div>
+
+    {% block sql_table %}{% endblock sql_table %}
+
+    <footer class="container">
+        <hr>
+        <p>Версия 0.0.3 от 15.10.2022</p>
+    </footer>
+
+</body>
+
+</html>
