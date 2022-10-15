@@ -1,0 +1,69 @@
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.menu {
+    background: lightblue;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    padding-inline-start: 20px;
+    /* justify-content: center; */
+}
+
+.menu ul li {
+    padding: 10px;
+}
+
+.menu ul a {
+    text-decoration: none;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.table__center th,
+.table__center td {
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* tr:nth-child(even) {
+    background-color: #f2f2f2;
+} */
+
+.table__center {
+    margin: auto;
+}
+
+.heading {
+    text-align: center;
+    font-size: large;
+}
+
+.pagination_td {
+    padding: 5px 10px;
+}
+
+.select-flight-id select {
+    margin-right: 20px;
+}
+
+.sqltable__center {
+    margin: 0 auto;
+    font-size: 10px;
+    text-align: center;
+}
+
+.sqltable__center th,
+.sqltable__center td {
+    padding: 5px;
+}

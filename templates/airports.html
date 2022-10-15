@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Аэропорты</title>{% endblock title %}
+
+{% block heading %}
+<p class="heading">
+    Аэропорты
+</p>
+{% endblock %}
+
+
+{% block pagination_top %}
+{{ pagination.links }}
+{% endblock %}
+
+
+{% block content %}
+<table class="table__center">
+    <thead>
+        <tr>
+            <th>Airport Code</th>
+            <th>Airport Name Eng</th>
+            <th>Airport Name Rus</th>
+            <th>City Eng</th>
+            <th>City Rus</th>
+            <th>Tinezone</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for port in airports %}
+        <tr>
+            <td>{{ port[0] }}</td>
+            <td>{{ port[1]['en'] }}</td>
+            <td>{{ port[1]['ru'] }}</td>
+            <td>{{ port[2]['en'] }}</td>
+            <td>{{ port[2]['ru'] }}</td>
+            <td>{{ port[4] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock content %}
