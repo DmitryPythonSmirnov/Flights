@@ -29,10 +29,9 @@ host = '<db_host>'
 port = '<db_port>'
 ```
 4. Для подключения к PostgreSQL из Python необходимо установить библиотеку psycopg2.  
-На Windows я устанавливал её командой  
-`pip install psycopg2`,  
-на Ubuntu:  
-`pip install psycopg2-binary`.
+- Установка на Windows: `pip install psycopg2`  
+- Установка на Ubuntu: `pip install psycopg2-binary`
+
 5. В консоли перейти в каталог проекта и запустить проект командой  
 `python main.py`
 
